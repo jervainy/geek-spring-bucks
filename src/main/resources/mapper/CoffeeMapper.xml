@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geektime.mapper.CoffeeMapper">
+
+
+    <select id="selectList" resultType="com.geektime.model.Coffee">
+        select * from coffee
+    </select>
+
+    <select id="selectOne" resultType="com.geektime.model.Coffee">
+        select * from coffee where id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into coffee (id, name, price) value (#{id}, #{name}, #{price})
+    </insert>
+
+    <update id="update">
+        update coffee
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="price != null">price = #{price},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="del">
+        delete from coffee where id = #{id}
+    </delete>
+
+</mapper>
